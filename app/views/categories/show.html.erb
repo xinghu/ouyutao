@@ -1,0 +1,216 @@
+<div id="main" class="productcategory">
+        
+    <form method="post" action="stages.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUENTM4MQ9kFgJmD2QWAmYPZBYCAgYPZBYCAgEPZBYGAgIPEA8WAh4LXyFEYXRhQm91bmRnZBAVAwIyMAI1MAMxMDAVAwIyMAI1MAMxMDAUKwMDZ2dnFgFmZAIHDxAPFgIfAGdkEBUDAjIwAjUwAzEwMBUDAjIwAjUwAzEwMBQrAwNnZ2cWAWZkAgwPZBYCAgMPZBYKZg8PFgIeB1Zpc2libGVnZGQCAQ8PFgIfAWdkZAICDw8WAh8BZ2RkAgMPDxYCHwFnZGQCBA8PFgIfAWdkZGTYgX2VVc6FUWdrYsDmbEgcY8ZDlg==">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+  <div id="content">
+    <header id="main-header">
+      <hgroup>
+        <h1 id="page-title"><%= @category.name %></h1>
+      </hgroup>
+      <%= image_tag @category.pic.url, class: "billboard-image" %>
+      <p><%= @category.description %></p>
+    </header>
+    <ul id="product-list">
+      <% @products.each do |product| %>
+      <li class="left" data-nid="1099">
+        <article>
+          <figure>
+            <%= link_to image_tag("#{product.pic.url}", width: "178", height: "130"),  product_path(product) %>
+          </figure>
+          <header>
+              <%= link_to "#{product.name}", product_path(product) %>
+              </h1>
+          </header>
+          <p class="summary">
+              <%= truncate product.description, length: 75, omission: '...' %> <%= link_to "More", product_path(product), class: 'more-link' %>
+          </p>
+        </article>
+      </li>
+      <% end %>
+    </ul>
+        
+<div id="quickspec" style="left: -9999em; top: -9999em;"><h2></h2><div class="content"></div><a href="#" class="quickspec-more">Learn more about this product&nbsp;»</a><div class="arrow"></div></div></div>
+<aside id="sidebar-first" class="facet-nav">
+    <h1>Faceted Navigation</h1>
+    
+      
+      <section class="applied-facets">
+        <h1>You've Selected</h1>
+        <ul>
+          
+    <li class="facet-1-0"><a class="remove-facet" href="/product-catalog.aspx" title="remove">(x)</a> Stages</li>
+
+        </ul>
+        <a href="/product-catalog.aspx" class="clear-all">
+          Clear all selections
+        </a>
+      </section>
+    
+    
+    
+      <section class="unapplied-facets">
+        <h1>Narrow Your Results</h1>
+        <ul>
+          
+
+<li>
+  <section id="motion-type-filter">
+    <h2 class="filter-name">Motion Type</h2>
+    <ul>
+        
+        
+                <li><a href="/product-catalog/stages/linear-stage.aspx">Linear Stages <span class="facet-count">(41)</span></a></li>
+        
+                <li><a href="/product-catalog/stages/rotary-stage.aspx">Rotary Stages <span class="facet-count">(23)</span></a></li>
+        
+                <li><a href="/product-catalog/stages/linear-x-y-stages.aspx">Linear X-Y Stages <span class="facet-count">(12)</span></a></li>
+        
+                <li><a href="/product-catalog/stages/lift-and-z-axis-stages.aspx">Lift and Z-Axis Stages <span class="facet-count">(12)</span></a></li>
+        
+                <li><a href="/product-catalog/stages/manual-positioners.aspx">Manual Positioners <span class="facet-count">(3)</span></a></li>
+        
+    </ul>
+  </section>
+</li>
+
+<li>
+  <section id="drive-type-filter">
+    <h2 class="filter-name">Drive Type</h2>
+    <ul>
+        
+        
+                <li><a href="/product-catalog/stages.aspx?drivetype=Direct">Direct <span class="facet-count">(59)</span></a></li>
+        
+                <li><a href="/product-catalog/stages.aspx?drivetype=Gear">Gear <span class="facet-count">(2)</span></a></li>
+        
+                <li><a href="/product-catalog/stages.aspx?drivetype=Manual">Manual <span class="facet-count">(3)</span></a></li>
+        
+                <li><a href="/product-catalog/stages.aspx?drivetype=Screw">Screw <span class="facet-count">(26)</span></a></li>
+        
+    </ul>
+  </section>
+</li>
+
+<li>
+  <section id="bearing-type-filter">
+    <h2 class="filter-name">Bearing Type</h2>
+    <ul>
+        
+        
+                <li><a href="/product-catalog/stages.aspx?bearingType=Air">Air <span class="facet-count">(16)</span></a></li>
+        
+                <li><a href="/product-catalog/stages.aspx?bearingType=Mechanical">Mechanical <span class="facet-count">(74)</span></a></li>
+        
+    </ul>
+  </section>
+</li>
+<li>
+  <section id="maximum-load-filter">
+  <h2 class="filter-name">Maximum Load</h2>
+  <ul>
+      
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=0">
+      0–10&nbsp;kg
+      
+      (20)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=1">
+      11–20&nbsp;kg
+      
+      (22)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=2">
+      21–50&nbsp;kg
+      
+      (34)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=3">
+      51–100&nbsp;kg
+      
+      (15)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=4">
+      101–150&nbsp;kg
+      
+      (18)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=5">
+      151–450&nbsp;kg
+      
+      (7)
+      </a>
+    </li>
+      
+    <li>
+      <a href="/product-catalog/stages.aspx?maxload=6">
+      more than&nbsp;451&nbsp;kg
+      
+      (1)
+      </a>
+    </li>
+      
+  </ul>
+  </section>
+</li>
+
+
+<li>
+  <section id="application-filter">
+    <h2 class="filter-name">Application</h2>
+    <ul>
+        
+        
+                <li><a href="/product-catalog/stages.aspx?application=Nanopositioning">Nanopositioning <span class="facet-count">(12)</span></a></li>
+        
+    </ul>
+  </section>
+</li>
+        </ul>
+      </section>
+    
+    
+</aside>
+</form>
+
+        
+      </div>

@@ -1,0 +1,5 @@
+<% if @product.present? %>	
+$("#extend_attrs").html("<% @attrs.each do |attr| %><tr><% attr.each do |k,v| %><td><%= k %></td><td><select name='product[<%=v%>]'><options><% eval('Product.get_'+v+'_values').each do |key| %><option value='<%= key[1] %>' <%= 'selected' if eval('@product.'+v) == key[1] %>><%= key[0] %></option><% end %></options></select></td><% end %></tr><% end %>")
+<% else %>
+$("#extend_attrs").html("<% @attrs.each do |attr| %><tr><% attr.each do |k,v| %><td><%= k %></td><td><select name='product[<%=v%>]'><options><% eval('Product.get_'+v+'_values').each do |key| %><option value='<%= key[1] %>'><%= key[0] %></option><% end %></options></select></td><% end %></tr><% end %>")
+<% end %>

@@ -1,0 +1,45 @@
+<style type="text/css">
+#error_explanation {
+margin: 10px;
+padding: 10px;
+width: 97%;
+border: 1px solid red;
+text-align: center;
+}
+</style>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+       <%= devise_error_messages! %>
+<div class="login_content">
+    <table class="login">
+            <tbody>
+                <tr>
+                    <td class="t01"><label for="username">*邮箱：</label></td>
+                    <td class="t02">
+                      <%= f.text_field :email, :tabindex=>"1", :class=>"post_name" %>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="t01"><label for="password">*密码：</label></td>
+                    <td class="t02">
+                      <%= f.password_field :password, :tabindex=>"2", :class=>"post_name" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t01"><label for="password">*密码确认：</label></td>
+                    <td class="t02">
+                      <%= f.password_field :password_confirmation, :tabindex=>"2", :class=>"post_name" %>
+                    </td>
+                </tr>
+                <tr height="20">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="t01"></td>
+                    <td class="t03"><button onmouseout="this.className='button_submit_s';" onmouseover="this.className='button_submit_s button_submit_s_hover';" type="submit" class="button_submit_s"> 注册&gt;&gt;</button></td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+<% end -%>

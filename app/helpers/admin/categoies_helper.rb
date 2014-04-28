@@ -1,0 +1,2 @@
+module Admin::CategoiesHelper
+end

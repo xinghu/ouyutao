@@ -1,0 +1,31 @@
+<table class="grid">
+    <thead>
+      <tr>
+        <th width="10%">名称</th>
+        <th width="10%">管理</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <%unless category.blank? %>
+            <td width="10%"><%= category.name %></td>
+            <td width="10%">
+              <%= link_to "修改", edit_admin_category_path(category) %>&nbsp;&nbsp;
+              <%= link_to "删除", admin_category_path(category), :method => :delete, confirm: "确认要删除该分类？" %>
+            </td>
+          <%else%>
+            <td width="80%">
+              <span style="color:red;"> 呀！有空对象啊！</span>
+            </td>
+          <%end%>
+        </tr>
+      <% end -%>
+      <% if @categories.blank? %>
+        <tr>
+          <td colspan="6">暂无相关数据</td>
+        </tr>
+      <% end -%>
+    </tbody>
+</table>
+<%#= will_paginate @categories %>

@@ -1,0 +1,1 @@
+$categories = Category.where(parent_id: nil)

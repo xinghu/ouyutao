@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>后台管理系统</title>
+  <%= stylesheet_link_tag    "admin", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= yield :header %>
+ </head>
+ <body>
+  <div id="wapper">
+   <div id="head">
+    <div class="top_menu">
+     <% if current_admin %>
+            登录为：<%= current_admin.email %>&nbsp;&nbsp;&nbsp;
+       <%= link_to('退出', destroy_admin_session_path, :method => :delete) %>
+    <% else %>
+        <div class="top_menu"><a href="/admins/sign_in">登录</a></div>
+     <% end -%>
+    </div>
+    <div class="logo">
+     后台管理系统
+    </div>
+   </div>
+   <div id="middle">
+    <% if current_admin  %>
+    <%= render '/admin/shared/sidebar' %>
+    <div id="css_mainbody">
+      <% if flash[:notice].present? %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+      <% end %>
+     <%= yield %>
+    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+    <div class="clear"></div>
+   </div>
+   <div id="foot">
+
+    <div id="foot1">
+     <span class="infor">Copyright © 2014　</span>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

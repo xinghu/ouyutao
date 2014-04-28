@@ -1,0 +1,187 @@
+
+<!doctype html>
+  
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  
+  <head id="ctl00_ctl00_Head1">
+  <title>Ouyutao</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  </head>
+
+  <body class="homepage ">
+    <div id="container">
+      <header id="site-header">
+        
+        <a id="logo" href="/">
+          <%= image_tag("aerotech-logo.png")%>
+        </a>
+        
+        <form id="search-form" action="/Search-Results.aspx" method="get">
+          <div id="search-form-wrapper">
+          <input name="search-term" type="search" id="search-term" size="30" value=""><select name="search-type" id="search-type">
+            <option value="products">Products</option>
+            <option value="site">Site</option>
+          </select>
+          </div>
+          <input type="hidden" name="pid" value="" />
+          <%= image_tag("search-button.png") %>
+        </form><!-- /#search-form -->
+        
+        <nav id="site-nav">
+          <h1>Site Navigation</h1>
+          
+<ul id="main-nav">
+    <li id="main-nav-product-catalog" class="first"><a href="/product-catalog.aspx">产品分类</a>
+        <ul>
+          <% $categories.each_with_index do |category, index| %>
+            <li class="col-1 <%= 'first col-first' if index == 0 %>"><a href="/categories/<%= category.id %>"><%= category.name %></a></li>
+          <% end %>
+        </ul>
+    </li>
+    <li id="main-nav-custom-solutions"><a href="/custom-solutions.aspx">解决方案</a></li>
+    
+    <li id="main-nav-capabilities"><a href="/capabilities.aspx">技术文档</a></li>
+    <li id="main-nav-about-aerotech"><a href="/about-aerotech.aspx">关于我们</a>
+        <ul>
+            <li class="first col-1 col-first"><a href="#">关于我们</a></li>
+            <li class="col-1"><a href="#">联系我们</a></li>
+        </ul>
+    </li>
+</ul>
+          
+        </nav>
+        
+      </header><!-- /#site-header -->
+      
+      <%= yield %>
+    </div><!-- /#container -->
+    
+    <footer id="site-footer">
+
+      <div>
+        <p><em>Aerotech is a motion control, positioning and automation systems manufacturer.</em></p>
+        <p><small>&copy; 1994&ndash;2014 Aerotech Inc.  All Rights Reserved.</small></p>
+        
+<ul id="footer-nav">
+    <li class="first"><a href="/site-map.aspx">Site Map</a></li>
+    <li><a href="/terms-of-use.aspx">Terms of Use</a></li>
+</ul>
+        
+<ul id="footer-utility-nav">
+    <li class="first"><a href="/contact-sales.aspx">Contact Sales</a></li>
+    <li><a href="/service-and-support.aspx">Service &amp; Support</a></li>
+    <li><a href="/careers.aspx">Careers</a></li>
+</ul>
+      </div>
+      
+      <section id="connect-with-aerotech">
+        <h1>Connect with Aerotech</h1>  
+        <ul>
+          
+          <li>
+            <a href="/about-us/press-releases/all-press-releases/english/feed.aspx" id="rss-link">RSS</a>
+          </li>
+          <li class="last">
+            <a href="http://blog.aerotechmotioncontrol.com" id="inmotion-link">inMotion Blog</a>
+          </li>
+        </ul>
+      </section>
+      
+    </footer><!-- /#site-footer -->
+  <!--[if lt IE 7 ]>
+    <script src="/scripts/js/libs/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg'); </script>
+  <![endif]-->
+    
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var bannerSlides = [{"Title":"At the \u003cb\u003eAdditive\u003c/b\u003e Edge","Subtitle":null,"ImageUrl":"<%= image_tag('additivemanufacturing3.jpg')%>","ImageCaption":null,"TeaserText":"\u003cp\u003e\u003ca href=\"/industries-and-applications/additive-manufacturing.aspx\"\u003eAdditive Manufacturing\u003c/a\u003e is set to become one of the most exciting manufacturing breakthroughs of recent times. And Aerotech is already making its mark.\u003c/p\u003e","MoreLinkText":"The Future Is Now","Url":"/industries-and-applications/additive-manufacturing.aspx"}];
+      for (var i = 0; i < bannerSlides.length; i++){
+        $('<li>')
+        .append($('<article>')
+          .html(bannerSlides[i].TeaserText)
+          .prepend($('<h1>').html(bannerSlides[i].Title))
+          .prepend($('<img>').attr({'src': bannerSlides[i].ImageUrl, 'alt': ''}))
+          .append($('<p>').append(
+            $('<a>').attr({'href': bannerSlides[i].Url, 'class': 'more-link'}).html(bannerSlides[i].MoreLinkText + " &raquo;")
+            )
+          )
+        ).appendTo('#homepage-banner');
+      }
+      $('#banner').append(
+        $('<ul>').attr({ 'id': 'homepage-rotator-nav' }).append(
+          $('<li>').append($('<a>').attr({ 'id': 'homepage-rotator-prev', 'href': '#' }).html('Previous Slide'))
+        ).append(
+          $('<li>').append($('<a>').attr({ 'id': 'homepage-rotator-next', 'href': '#' }).html('Next Slide'))
+        )
+      );
+
+      window.setTimeout(function() {
+        $('#homepage-banner').cycle({
+          fx: 'scrollFade',
+          timeout: 10000,
+          speed: '250',
+          prev: '#homepage-rotator-prev',
+          next: '#homepage-rotator-next',
+          easeIn: 'easeInOutExpo',
+          easeOut: 'easeInOutExpo'
+        });
+      }, 250);
+    });
+  </script>
+  
+      
+    <script>
+        $(document).ready(function() {
+        
+            $("#search-type").change(function() {
+              $('#search-term').autocomplete(this.value == 'products' ? 'enable' : 'disable');
+            });
+            
+            $('#search-term').autocomplete({
+                //autoFocus: true,
+                source: "/Product-Search.aspx",
+                select: function(event, ui) {
+                    $('#search-form input[name=pid]').val(ui.item.id);
+                    $('#search-form input[name=search-term]').val(ui.item.value);
+                    if (ui.item.id == 'site-search') {
+                        $('#search-form select[name=search-type]').val('site');
+                    }
+                    /* adding a hidden that will get passed to the URL on submit to indicate that the page was reached via the auto-complete method. */
+                    var autoCompleteHidden = document.createElement('input');
+                    $(autoCompleteHidden).attr('type', 'hidden');
+                    $(autoCompleteHidden).attr('id', 'search-auto-complete');
+                    $(autoCompleteHidden).attr('name', 'search-auto-complete');
+                    $(autoCompleteHidden).val(true);
+                    $(autoCompleteHidden).appendTo('#search-form');
+                    $('#search-auto-complete').val('true');
+
+                    $('#search-form').submit();
+                },
+                disabled: $("#search-type").val() != 'products'
+            })
+            .data('autocomplete')._renderItem = function( ul, item ) {
+                return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append( '<a>' + item.label + '</a>' )
+                .appendTo( ul );
+            };
+
+            $('.image-zoom > a.zoom').click(function (e) {
+                 e.preventDefault();
+                 e.stopPropagation();
+                 window.open(e.target, "_win", "width=780,height=590, resizable=yes, scrollbars=yes");
+                 return false;
+            });
+        });
+    </script>
+    
+  </body>
+  </html>
+

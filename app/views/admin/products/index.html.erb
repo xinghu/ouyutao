@@ -1,0 +1,39 @@
+<table class="grid">
+    <thead>
+      <tr>
+        <th width="10%">名称</th>
+        <th width="10%">所属分类</th>
+        <th width="10%">扭矩</th>
+        <th width="10%">转速</th>
+        <th width="10%">功率</th>
+        <th width="10%">管理</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <%unless product.blank? %>
+            <td width="10%"><%= product.name %></td>
+            <td width="10%"><%= product.category.try(:name) %></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%">
+              <%= link_to "修改", edit_admin_product_path(product) %>&nbsp;&nbsp;
+              <%= link_to "删除", admin_product_path(product), :method => :delete, confirm: "确认要删除该分类？" %>
+            </td>
+          <%else%>
+            <td width="80%">
+              <span style="color:red;"> 呀！有空对象啊！</span>
+            </td>
+          <%end%>
+        </tr>
+      <% end -%>
+      <% if @products.blank? %>
+        <tr>
+          <td colspan="6">暂无相关数据</td>
+        </tr>
+      <% end -%>
+    </tbody>
+</table>
+<%#= will_paginate @categories %>

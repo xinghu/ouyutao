@@ -1,0 +1,78 @@
+<div class="module-right-box">
+  <div class="ucenter-title">
+    <div class="row">
+      <div class="col-xs-20 col-sm-20 col-md-20 col-lg-20">
+        <h3>修改密码</h3>
+      </div>
+    </div>
+  </div>
+  <div class="ucenter-content">
+
+    <% if (full_messages = resource.errors.full_messages).present? -%>
+    <div class="alert alert-danger alert-danger-form">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        <i class="fa fa-times-circle"></i>
+      </button>
+      <% full_messages.each_with_index do |message, index| %>
+        <%= full_messages.length > 0 ? "#{index.succ}:  #{message}  " : message %>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="information-box form-content">
+      <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-20 col-sm-20 col-md-20 col-lg-20">
+          <%= render "devise/registrations/edit_password" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :script do %>
+<script>
+  $(function(){
+    $(".update_password").validate({
+      wrapper: "div",
+      onkeyup: false,
+      rules: {
+        "user[email]": {
+          required: true
+        },
+        "user[password]": {
+          required: true,
+          minlength: 6,
+          maxlength: 30
+        },
+        "user[current_password]": {
+          required: true
+        },
+        "user[password_confirmation]": {
+          required: true,
+          equalTo:'#user_password',
+          minlength: 6,
+          maxlength: 30
+        }
+      },
+      messages:{
+        "user[password_confirmation]":{
+          equalTo: "两次输入的密码不一致"
+        }
+      },
+      errorPlacement:function(error, element){
+        error.addClass("error-text-right")
+        error.find(".text-error").addClass("text-error-icon")
+        if(element.attr("name") == "job[job_class_ids][]"){
+          element.parents("label").append(error)
+        }else{
+          element.after(error)
+        }
+      }
+    })
+  })
+</script>
+<% end %>

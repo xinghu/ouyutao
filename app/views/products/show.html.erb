@@ -1,0 +1,51 @@
+<div id="main" class="productseries">
+        
+        
+  <div id="content">
+  <header id="main-header">
+    <ol id="breadcrumb-nav">
+      <li><a href="<%= category_path(@product.category) %>">返回<%= @product.category.try(:name) %></a></li>
+    </ol>
+    <h1 id="page-title">
+       <%= @product.name %>
+    </h1>
+  </header>
+  
+  
+  <div id="featured-media-container">
+    <ul id="featured-media" style="overflow: visible;">
+      <li class="selected" style="position: absolute; top: 0px; left: 0px; display: list-item; z-index: 3; opacity: 1;">
+        <img src="/media/80024/abl10050-10,24,01_438x320-fit-ffffff.jpg" alt="ABL1000 Air Bearing Stages" width="438" height="320">
+        <%= image_tag(@product.pic.url) %>
+      </li>
+    </ul>
+  </div>
+    
+    <div class="tab-container">
+      <div class="tabs">
+        <!-- Description -->
+        <section>
+        <h1>描述</h1>
+         <%= @product.description %>        
+        </section><!-- /Description -->
+      
+      <!-- /OrderingInformation -->
+      
+    </div></div> <!-- /.tabs -->
+  
+  </div> <!-- /#content -->
+  
+  <aside id="sidebar-first">
+    <section class="callout" id="downloads-callout">
+      <h1>下载资料</h1>
+      <ul>
+        <li><a href="/media/440262/abl1000.pdf" target="_blank">Complete Product Sheet</a></li>
+        <li><a href="http://www.aerotechmotioncontrol.com/products/drawings/loggedin.cfm?cad=ABL1000_CAT" target="_blank">CAD Download (requires login)</a></li>
+        <li>
+           <a href="http://www.aerotechmotioncontrol.com/manuals/index.aspx" target="_blank">Product Manuals</a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+  
+      </div>

@@ -1,0 +1,55 @@
+<%= form_for([:admin, @product]) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table class="grid_order">
+  <tbody>
+    <tr>
+      <td width="10%">名称:</td>
+      <td width="50%"><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td width="10%">图片:</td>
+      <td width="50%"><%= f.file_field :pic %></td>
+    </tr>
+    <tr>
+      <td width="10%">所属分类:</td>
+      <td width="50%"><%= f.select :category_id, Category.all.map{|x| [x.name, x.id] } %></td>
+    </tr>
+    <tbody id="extend_attrs" class="grid_order">
+    </tbody>
+    <tr>
+      <td width="10%">描述:</td>
+      <td width="50%"><%= f.kindeditor :description, :window_onload => true %></td>
+    </tr>
+    <tr>
+      <td width="10%"></td>
+      <td width="50%"><%= f.submit "提交" %></td>
+    </tr>
+   </tbody>
+  </table>
+<% end %>
+
+<script type="text/javascript">
+ $(function(){
+  function get_attrs(cid,pid){
+    $.ajax({
+        url: "/admin/categories/get_attrs?category_id="+cid+"&product_id="+pid
+    })
+  }
+
+  $(document).on("change", "#product_category_id" , function(){
+    get_attrs(this.value); 
+  });
+
+  get_attrs($("#product_category_id").val(), "<%=@product.id%>");
+  
+ })
+</script>
+
